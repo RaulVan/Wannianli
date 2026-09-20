@@ -30,7 +30,8 @@
 - [x] 为项目补充 MIT License，并在 README 中声明项目许可证。
 - [x] 软件更新检查间隔仅保留“从不、每天、每周”；“从不”关闭主动检查但保留手动检查。
   - 验证：旧的每小时/每 6 小时设置会归一化为每天；18 项单元测试和设置窗口专项 UI 测试通过。
-- [ ] 构建并发布未公证的 1.0.1（Build 2），推送 main、版本标签、Sparkle Appcast 和 GitHub Release 安装包。
+- [x] 构建并发布未公证的 1.0.1（Build 2），推送 main、版本标签、Sparkle Appcast 和 GitHub Release 安装包。
+  - 验证：通用架构 ZIP 解压后通过深度签名校验且不含 `get-task-allow`；Release 资产下载返回 200，大小 24,552,460 字节，SHA-256 为 `e779c912580dc2d376f0dd861038df383aadb450940bafc8bb67c62d35687c06`；远端 Appcast 已回读 1.0.1。
 
 ## 约束
 - 当前目录不是 Git 仓库；遵循用户要求，不自行初始化，不推送或发布。
