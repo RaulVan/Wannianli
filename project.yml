@@ -1,0 +1,79 @@
+name: Calendar
+options:
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "26.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_STYLE: Manual
+    DEVELOPMENT_TEAM: ""
+packages:
+  LunarSwift:
+    url: https://github.com/6tail/lunar-swift.git
+    revision: a7ec0e9b29f84a5d98b09b9ffd31145f17470d56
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle.git
+    exactVersion: 2.10.0
+targets:
+  Calendar:
+    type: application
+    platform: macOS
+    sources: [Calendar]
+    dependencies:
+      - package: LunarSwift
+      - package: Sparkle
+        product: Sparkle
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: local.Calendar.Wannianli
+        PRODUCT_NAME: 万年历
+        PRODUCT_MODULE_NAME: Wannianli
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 1
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Calendar/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_LSUIElement: NO
+        ENABLE_APP_SANDBOX: YES
+        ENABLE_HARDENED_RUNTIME: YES
+    entitlements:
+      path: Calendar/Calendar.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.network.client: true
+        com.apple.security.personal-information.calendars: true
+        com.apple.security.temporary-exception.mach-lookup.global-name:
+          - $(PRODUCT_BUNDLE_IDENTIFIER)-spks
+          - $(PRODUCT_BUNDLE_IDENTIFIER)-spki
+  CalendarTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources: [CalendarTests]
+    dependencies:
+      - target: Calendar
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: local.Calendar.Tests
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/万年历.app/Contents/MacOS/万年历"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+  CalendarUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    sources: [CalendarUITests]
+    dependencies:
+      - target: Calendar
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: local.Calendar.UITests
+schemes:
+  Calendar:
+    build:
+      targets:
+        Calendar: all
+    test:
+      targets: [CalendarTests, CalendarUITests]

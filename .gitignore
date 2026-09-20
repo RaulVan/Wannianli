@@ -1,0 +1,19 @@
+.DS_Store
+.codex/
+build/
+build-release/
+DerivedData/
+release/
+*.xcresult
+*.log
+Calendar.xcodeproj/xcuserdata/
+Calendar.xcodeproj/project.xcworkspace/xcuserdata/
+evidence/
+
+# 保留共享 Workspace 元数据和锁定后的 Swift Package 版本。
+!Calendar.xcodeproj/project.xcworkspace/
+Calendar.xcodeproj/project.xcworkspace/xcuserdata/
+!Calendar.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+!Calendar.xcodeproj/project.xcworkspace/xcshareddata/
+!Calendar.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+!Calendar.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved

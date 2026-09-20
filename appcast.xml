@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>万年历</title>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Sun, 20 Sep 2026 08:10:48 +0800</pubDate>
+            <link>https://github.com/RaulVan/Wannianli</link>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/RaulVan/Wannianli/releases/download/v1.0.0/%E4%B8%87%E5%B9%B4%E5%8E%86-1.0.0.zip" length="24549084" type="application/octet-stream" sparkle:edSignature="Qw05NV/2AqclZeEJIs4p55C2A4USh/KkZ3zZGbdWMCHwZTfyn10oTCduLVSm1iYlgFG2VEo+wozAXYcUAHgiAw=="/>
+        </item>
+    </channel>
+</rss>
