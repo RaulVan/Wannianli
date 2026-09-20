@@ -107,6 +107,10 @@ appcast.xml           Sparkle 更新 Feed
 
 第三方许可说明随源码及 App 资源一同保留。
 
+## 许可证
+
+本项目采用 [MIT License](LICENSE) 开源。你可以在保留版权声明和许可声明的前提下使用、复制、修改、合并、发布及分发本项目。
+
 ## 开发说明
 
 - `project.yml` 是工程设置的权威来源；修改依赖或构建设置后运行 `xcodegen generate`。
