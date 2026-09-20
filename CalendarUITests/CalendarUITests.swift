@@ -1,6 +1,23 @@
 import XCTest
 
 final class CalendarUITests: XCTestCase {
+    func testUpdateFrequencyOffersNeverDailyAndWeekly() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing", "--fixed-today", "2026-09-19", "--show-settings"]
+        app.launch()
+
+        let settings = app.windows["设置"]
+        XCTAssertTrue(settings.waitForExistence(timeout: 10))
+        let frequency = settings.descendants(matching: .any)["updateFrequencyPicker"]
+        XCTAssertTrue(frequency.waitForExistence(timeout: 3))
+        frequency.click()
+        XCTAssertTrue(app.menuItems["从不"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.menuItems["每天"].exists)
+        XCTAssertTrue(app.menuItems["每周"].exists)
+        XCTAssertFalse(app.menuItems["每小时"].exists)
+        XCTAssertFalse(app.menuItems["每 6 小时"].exists)
+    }
+
     func testMonthPickerKeepsTwoDigitMonthsOnOneLineAndMenuHasYearPicker() {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing", "--fixed-today", "2026-09-19"]

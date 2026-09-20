@@ -31,20 +31,15 @@ struct SettingsView: View {
                 if let loginError { Text(loginError).font(.caption).foregroundStyle(Design.red) }
             }
             Section("软件更新") {
-                Toggle("自动检查更新", isOn: Binding(
-                    get: { updater.automaticallyChecksForUpdates },
-                    set: { updater.automaticallyChecksForUpdates = $0 }
-                ))
                 Picker("检查间隔", selection: Binding(
-                    get: { updater.updateCheckInterval },
-                    set: { updater.updateCheckInterval = $0 }
+                    get: { updater.updateFrequency },
+                    set: { updater.updateFrequency = $0 }
                 )) {
-                    Text("每小时").tag(TimeInterval(60 * 60))
-                    Text("每 6 小时").tag(TimeInterval(6 * 60 * 60))
-                    Text("每天").tag(TimeInterval(24 * 60 * 60))
-                    Text("每周").tag(TimeInterval(7 * 24 * 60 * 60))
+                    ForEach(AppUpdater.UpdateFrequency.allCases) { frequency in
+                        Text(frequency.title).tag(frequency)
+                    }
                 }
-                .disabled(!updater.automaticallyChecksForUpdates)
+                .accessibilityIdentifier("updateFrequencyPicker")
                 Button("立即检查更新…") { updater.checkForUpdates() }
                     .disabled(!updater.canCheckForUpdates)
                 Text("更新来自 GitHub Releases。当前发布包未经 Apple 公证，安装时可能需要在系统设置中确认打开。")

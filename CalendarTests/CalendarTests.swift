@@ -4,6 +4,23 @@ import AppKit
 
 final class CalendarTests: XCTestCase {
     let engine = CalendarEngine()
+    func testUpdateFrequencyResolvesAutomaticCheckPolicy() {
+        XCTAssertEqual(
+            AppUpdater.UpdateFrequency.resolve(automaticallyChecks: false, interval: 24 * 60 * 60),
+            .never
+        )
+        XCTAssertEqual(
+            AppUpdater.UpdateFrequency.resolve(automaticallyChecks: true, interval: 24 * 60 * 60),
+            .daily
+        )
+        XCTAssertEqual(
+            AppUpdater.UpdateFrequency.resolve(automaticallyChecks: true, interval: 7 * 24 * 60 * 60),
+            .weekly
+        )
+        XCTAssertEqual(AppUpdater.UpdateFrequency.daily.interval, 24 * 60 * 60)
+        XCTAssertEqual(AppUpdater.UpdateFrequency.weekly.interval, 7 * 24 * 60 * 60)
+        XCTAssertNil(AppUpdater.UpdateFrequency.never.interval)
+    }
     func testKnownLunarDates() {
         let midAutumn = engine.day(CivilDate(year: 2026, month: 9, day: 25))
         XCTAssertEqual(midAutumn.lunarTitle, "八月十五")
