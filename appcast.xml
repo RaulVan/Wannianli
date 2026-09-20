@@ -9,7 +9,7 @@
             <sparkle:version>1</sparkle:version>
             <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/RaulVan/Wannianli/releases/download/v1.0.0/%E4%B8%87%E5%B9%B4%E5%8E%86-1.0.0.zip" length="24549084" type="application/octet-stream" sparkle:edSignature="Qw05NV/2AqclZeEJIs4p55C2A4USh/KkZ3zZGbdWMCHwZTfyn10oTCduLVSm1iYlgFG2VEo+wozAXYcUAHgiAw=="/>
+            <enclosure url="https://github.com/RaulVan/Wannianli/releases/download/v1.0.0/Wannianli-1.0.0.zip" length="24549090" type="application/octet-stream" sparkle:edSignature="vP/9+0uw/FBN4lO99nfl0HJWUdn7LH4W9ZbXnoOMgi9oydggIo9AVKbixo0Z7grUBitAL59lliOS8iKXQReFCw=="/>
         </item>
     </channel>
 </rss>

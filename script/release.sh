@@ -19,7 +19,7 @@ xcodebuild \
 
 VERSION=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$APP/Contents/Info.plist")
 BUILD=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$APP/Contents/Info.plist")
-ARCHIVE_NAME="万年历-${VERSION}.zip"
+ARCHIVE_NAME="Wannianli-${VERSION}.zip"
 DOWNLOAD_PREFIX="https://github.com/RaulVan/Wannianli/releases/download/v${VERSION}/"
 
 mkdir -p "$OUTPUT_DIR"

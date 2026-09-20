@@ -79,7 +79,7 @@ xcodebuild test \
 ./script/release.sh
 ```
 
-脚本会构建 Release App、生成保持 framework 符号链接的 ZIP、使用 Sparkle 私钥签名，并更新根目录的 `appcast.xml`。随后提交版本和 Appcast，创建对应的 `v版本号` Git tag，并将 `release/万年历-版本号.zip` 上传到同名 GitHub Release。
+脚本会构建 Release App、生成保持 framework 符号链接的 ZIP、使用 Sparkle 私钥签名，并更新根目录的 `appcast.xml`。随后提交版本和 Appcast，创建对应的 `v版本号` Git tag，并将 `release/Wannianli-版本号.zip` 上传到同名 GitHub Release。
 
 本项目按当前要求不执行 Apple 公证。若未来转为正式公开分发，建议改用归属明确的 Developer ID Application 证书签名并完成公证。
 
