@@ -1,6 +1,29 @@
 import XCTest
 
 final class CalendarUITests: XCTestCase {
+    func testMonthPickerKeepsTwoDigitMonthsOnOneLineAndMenuHasYearPicker() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing", "--fixed-today", "2026-09-19"]
+        app.launch()
+
+        let main = app.windows["万年历"]
+        XCTAssertTrue(main.waitForExistence(timeout: 10))
+        main.buttons["monthPicker"].click()
+        XCTAssertTrue(app.buttons["monthOption-10"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.buttons["monthOption-12"].exists)
+        captureScreen("month-picker-two-digit-months")
+        app.buttons["monthOption-10"].click()
+        XCTAssertTrue(main.buttons["day-2026-10-19"].waitForExistence(timeout: 3))
+
+        app.menuBars.menuBarItems["日历"].click()
+        app.menuItems["显示菜单栏日历"].click()
+        XCTAssertTrue(app.buttons["menuYearPicker"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["menuMonthPicker"].exists)
+        app.buttons["menuYearPicker"].click()
+        XCTAssertTrue(app.buttons["yearOption-2026"].waitForExistence(timeout: 3))
+        captureScreen("menu-year-picker")
+    }
+
     func testCalendarJourney() {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing", "--fixed-today", "2026-09-19"]
@@ -30,6 +53,11 @@ final class CalendarUITests: XCTestCase {
     }
     private func capture(_ element: XCUIElement, _ name: String) {
         let attachment = XCTAttachment(screenshot: element.screenshot())
+        attachment.name = name; attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+    private func captureScreen(_ name: String) {
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         attachment.name = name; attachment.lifetime = .keepAlways
         add(attachment)
     }

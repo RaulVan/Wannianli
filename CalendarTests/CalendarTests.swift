@@ -89,6 +89,15 @@ final class CalendarTests: XCTestCase {
         XCTAssertEqual(manyEvents, fourEvents)
         XCTAssertEqual(manyEvents, Design.panelHeight + 96)
     }
+    @MainActor func testMenuPanelUsesNewlyPublishedEventCount() {
+        let publishedEventCount = 2
+        let height = MenuCalendar.preferredPanelHeight(
+            eventCount: publishedEventCount,
+            accessState: .granted
+        )
+
+        XCTAssertEqual(height, Design.panelHeight + 48)
+    }
     func testDynamicAppIconRendersEveryValidDay() throws {
         let baseURL = try XCTUnwrap(Bundle(for: AppDelegate.self).url(forResource: "calendar-base", withExtension: "png"))
         let base = try XCTUnwrap(NSImage(contentsOf: baseURL))

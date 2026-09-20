@@ -135,9 +135,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSPo
             }
             button.toolTip = "\(date.id) \(self.state.engine.day(date).lunarTitle)"
         }.store(in: &subscriptions)
-        calendarEvents.$events.combineLatest(calendarEvents.$accessState).sink { [weak self] _, _ in
+        calendarEvents.$events.combineLatest(calendarEvents.$accessState).sink { [weak self] events, accessState in
             guard let self, self.popover.isShown else { return }
-            self.updateMenuPanelSize()
+            // @Published emits from willSet. Use the emitted snapshot instead of
+            // reading the store here, otherwise the panel is sized for stale events.
+            self.updateMenuPanelSize(eventCount: events.count, accessState: accessState)
         }.store(in: &subscriptions)
         updater.$canCheckForUpdates.removeDuplicates().sink { [weak self] _ in
             guard let self, self.popover.isShown else { return }
@@ -170,18 +172,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSPo
         installPopoverDismissalMonitors()
     }
 
-    private func menuPanelHeight() -> CGFloat {
+    private func menuPanelHeight(
+        eventCount: Int? = nil,
+        accessState: LocalCalendarStore.AccessState? = nil
+    ) -> CGFloat {
         let screen = statusItem.button?.window?.screen ?? NSScreen.main
         let availableHeight = max(Design.panelHeight, (screen?.visibleFrame.height ?? 800) - 32)
         let preferredHeight = MenuCalendar.preferredPanelHeight(
-            eventCount: calendarEvents.events.count,
-            accessState: calendarEvents.accessState
+            eventCount: eventCount ?? calendarEvents.events.count,
+            accessState: accessState ?? calendarEvents.accessState
         )
         return min(preferredHeight, availableHeight)
     }
 
-    private func updateMenuPanelSize() {
-        let height = menuPanelHeight()
+    private func updateMenuPanelSize(
+        eventCount: Int? = nil,
+        accessState: LocalCalendarStore.AccessState? = nil
+    ) {
+        let height = menuPanelHeight(eventCount: eventCount, accessState: accessState)
         menuController?.rootView = MenuCalendar(
             state: state,
             holidays: holidays,
