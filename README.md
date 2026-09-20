@@ -116,5 +116,5 @@ appcast.xml           Sparkle 更新 Feed
 - `project.yml` 是工程设置的权威来源；修改依赖或构建设置后运行 `xcodegen generate`。
 - 产品中文名固定为“万年历”，Swift 模块名为 `Wannianli`。
 - Bundle ID：`local.Calendar.Wannianli`。
-- 当前版本：1.0.0（Build 1）。
+- 当前版本：1.0.1（Build 2）。
 - 当前发布策略：公开 GitHub Release、Sparkle EdDSA 校验、不做 Apple 公证。

@@ -3,6 +3,15 @@
     <channel>
         <title>万年历</title>
         <item>
+            <title>1.0.1</title>
+            <pubDate>Sun, 20 Sep 2026 09:01:59 +0800</pubDate>
+            <link>https://github.com/RaulVan/Wannianli</link>
+            <sparkle:version>2</sparkle:version>
+            <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/RaulVan/Wannianli/releases/download/v1.0.1/Wannianli-1.0.1.zip" length="24552460" type="application/octet-stream" sparkle:edSignature="3525EyxncmQUWBek6CdqqV3Uh0USn8Fz9btJ/Wbo7T6TvPHIhCs/fKE0waxft1FfgQb0D7HUSmM3DTtAsOJ3CA=="/>
+        </item>
+        <item>
             <title>1.0.0</title>
             <pubDate>Sun, 20 Sep 2026 08:10:48 +0800</pubDate>
             <link>https://github.com/RaulVan/Wannianli</link>
