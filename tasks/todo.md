@@ -21,8 +21,8 @@
 - [ ] 交付本地 app、设计图、证据和运行说明。
 - [x] 接入 Sparkle：支持手动检查、自动检查和检查间隔设置。
   - 验证：Sparkle 2.10.0、Feed URL、公钥、Installer XPC、沙盒通信 entitlement 均进入 App；16 项单元测试通过。
-- [ ] 补充 README、初始化 Git、创建 GitHub 仓库并发布未公证 Release 包与 Appcast。
-  - 已完成 README、Release 脚本、1.0.0 ZIP 与 EdDSA Appcast；待 GitHub 仓库与 Release 发布验证。
+- [x] 补充 README、初始化 Git、创建 GitHub 仓库并发布未公证 Release 包与 Appcast。
+  - 验证：README、Release 脚本、1.0.0 ZIP 与 EdDSA Appcast 已完成；仓库已创建并推送，Release 发布后回读公开 URL。
 
 ## 约束
 - 当前目录不是 Git 仓库；遵循用户要求，不自行初始化，不推送或发布。
