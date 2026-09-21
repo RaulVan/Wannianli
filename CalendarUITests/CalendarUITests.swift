@@ -14,6 +14,28 @@ final class CalendarUITests: XCTestCase {
         XCTAssertFalse(app.menuBars.menuBarItems["万年历"].exists)
     }
 
+    func testReopeningMainAndMenuReturnsToTodayAfterBrowsing() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing", "--fixed-today", "2026-09-19"]
+        app.launch()
+
+        let main = app.windows["万年历"]
+        XCTAssertTrue(main.waitForExistence(timeout: 10))
+        app.buttons["day-2026-09-03"].firstMatch.click()
+        XCTAssertTrue(app.buttons["day-2026-09-03"].firstMatch.isSelected)
+
+        main.buttons[XCUIIdentifierCloseWindow].click()
+        XCTAssertFalse(main.waitForExistence(timeout: 2))
+
+        app.typeKey("m", modifierFlags: [.command, .shift])
+        XCTAssertTrue(app.buttons["openFullCalendar"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["八月初九"].firstMatch.waitForExistence(timeout: 3))
+
+        app.buttons["openFullCalendar"].click()
+        XCTAssertTrue(main.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["day-2026-09-19"].firstMatch.isSelected)
+    }
+
     func testUpdateFrequencyOffersNeverDailyAndWeekly() {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing", "--fixed-today", "2026-09-19", "--show-settings"]

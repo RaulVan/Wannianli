@@ -67,6 +67,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSPo
 
     @objc func showMainWindow() {
         closePopover()
+        state.goToday()
         NSApp.setActivationPolicy(.regular)
         if mainWindow == nil {
             let content = CalendarWindow(state: state, holidays: holidays, calendarEvents: calendarEvents,
@@ -159,7 +160,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSPo
 
     @objc private func togglePopover() {
         if popover.isShown { closePopover(); return }
-        state.refreshClock()
+        state.goToday()
         // Status bar windows otherwise inherit the menu bar's appearance instead of the app preference.
         popover.appearance = NSApp.effectiveAppearance
         guard let button = statusItem.button else { return }
