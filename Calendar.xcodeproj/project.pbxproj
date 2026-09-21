@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0286867A580F20B46A63444A /* CN-2025.json in Resources */ = {isa = PBXBuildFile; fileRef = 311468E21E7DC9B3E373B2A4 /* CN-2025.json */; };
 		035DCDF68B47011B194AC207 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DF126ABF3897DFAFF9CAB8 /* CalendarTests.swift */; };
-		05C2A4E7AF4C4E5DAB18D132 /* ApplicationPresentationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E38F69C9CD47A1A6D4C188 /* ApplicationPresentationPolicy.swift */; };
 		06D44D85D5B5ED4B69DAEF2E /* CalendarEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1EFA374718A7F064672CE8 /* CalendarEngine.swift */; };
 		0A1FF485C18CD6BF9B3794AD /* LocalCalendarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BCD8D3D8CED6F89A9D4589 /* LocalCalendarStore.swift */; };
 		1113431251B07409C941C29C /* DynamicAppIconRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3C42DE0A0B42391DA3ED1E /* DynamicAppIconRenderer.swift */; };
@@ -42,6 +41,7 @@
 		D166F683E4B39DA4E68A9441 /* MonthNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A06CDA014B2FA32CD36D15E /* MonthNavigation.swift */; };
 		D9137CF21F0ACC0403EDB2F4 /* CalendarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C887CB6D45615813FAF7CBF3 /* CalendarUITests.swift */; };
 		DE9468556E7FEC0D8E6AC3E6 /* FestivalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A59C1B7A1231AA3EF9210 /* FestivalCard.swift */; };
+		E4765C913CD653C76D6AE8EA /* ApplicationPresentationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EF56D1DF06A8E01A10C448 /* ApplicationPresentationPolicy.swift */; };
 		E4CC11F080AC31E9006B74D1 /* calendar-19-reference.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B4694EF02AE112E9F989E /* calendar-19-reference.png */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +68,6 @@
 		08C256D547C29CFEF02F08BD /* HorizontalMonthSwipeMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMonthSwipeMonitor.swift; sourceTree = "<group>"; };
 		0DBFD90A52471EF4CE98A828 /* LocalCalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCalendarEvent.swift; sourceTree = "<group>"; };
 		11C7BBB4BDFDC527BB2AD15C /* HolidayStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayStoreTests.swift; sourceTree = "<group>"; };
-		12E38F69C9CD47A1A6D4C188 /* ApplicationPresentationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPresentationPolicy.swift; sourceTree = "<group>"; };
 		1A06CDA014B2FA32CD36D15E /* MonthNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthNavigation.swift; sourceTree = "<group>"; };
 		1E6AA1C16D5AAE616B599B46 /* Calendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21A8A7606F3F0FD4A0853F29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		3F15165FE09F475F836824CB /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
 		4F42907D29C9149598E9C15A /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		4FC3AA5B438599CAD18C0257 /* HolidayYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayYear.swift; sourceTree = "<group>"; };
+		56EF56D1DF06A8E01A10C448 /* ApplicationPresentationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPresentationPolicy.swift; sourceTree = "<group>"; };
 		57381362484526D34AB04C9F /* calendar-base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-base.png"; sourceTree = "<group>"; };
 		580B4694EF02AE112E9F989E /* calendar-19-reference.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-19-reference.png"; sourceTree = "<group>"; };
 		6D65227398B64112F9906733 /* LocalCalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCalendarEventsView.swift; sourceTree = "<group>"; };
@@ -229,9 +229,9 @@
 		E1914F3E86E55098AD24AAD0 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				12E38F69C9CD47A1A6D4C188 /* ApplicationPresentationPolicy.swift */,
 				2F66C9447C2879837AA8A809 /* AppDelegate.swift */,
 				4F42907D29C9149598E9C15A /* AppEntry.swift */,
+				56EF56D1DF06A8E01A10C448 /* ApplicationPresentationPolicy.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -409,10 +409,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				416F89C374807DF379984AE5 /* AlmanacDetail.swift in Sources */,
-				05C2A4E7AF4C4E5DAB18D132 /* ApplicationPresentationPolicy.swift in Sources */,
 				3132681F9244B69B81981078 /* AppDelegate.swift in Sources */,
 				70415EE01F5170443A07888A /* AppEntry.swift in Sources */,
 				6CC66C5CCC8C45D032ED704A /* AppUpdater.swift in Sources */,
+				E4765C913CD653C76D6AE8EA /* ApplicationPresentationPolicy.swift in Sources */,
 				83C53A91B24DA291DA1C9313 /* CalendarDay.swift in Sources */,
 				06D44D85D5B5ED4B69DAEF2E /* CalendarEngine.swift in Sources */,
 				BB5BD867F5B5AE4DA7CCB9E1 /* CalendarState.swift in Sources */,
@@ -455,7 +455,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Calendar/Calendar.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -465,7 +465,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = local.Calendar.Wannianli;
 				PRODUCT_MODULE_NAME = Wannianli;
 				PRODUCT_NAME = "万年历";
@@ -673,7 +673,7 @@
 				CODE_SIGN_ENTITLEMENTS = Calendar/Calendar.entitlements;
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -683,7 +683,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = local.Calendar.Wannianli;
 				PRODUCT_MODULE_NAME = Wannianli;
 				PRODUCT_NAME = "万年历";
