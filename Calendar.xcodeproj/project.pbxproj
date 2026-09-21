@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0286867A580F20B46A63444A /* CN-2025.json in Resources */ = {isa = PBXBuildFile; fileRef = 311468E21E7DC9B3E373B2A4 /* CN-2025.json */; };
 		035DCDF68B47011B194AC207 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DF126ABF3897DFAFF9CAB8 /* CalendarTests.swift */; };
+		05C2A4E7AF4C4E5DAB18D132 /* ApplicationPresentationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E38F69C9CD47A1A6D4C188 /* ApplicationPresentationPolicy.swift */; };
 		06D44D85D5B5ED4B69DAEF2E /* CalendarEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1EFA374718A7F064672CE8 /* CalendarEngine.swift */; };
 		0A1FF485C18CD6BF9B3794AD /* LocalCalendarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BCD8D3D8CED6F89A9D4589 /* LocalCalendarStore.swift */; };
 		1113431251B07409C941C29C /* DynamicAppIconRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3C42DE0A0B42391DA3ED1E /* DynamicAppIconRenderer.swift */; };
@@ -67,6 +68,7 @@
 		08C256D547C29CFEF02F08BD /* HorizontalMonthSwipeMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMonthSwipeMonitor.swift; sourceTree = "<group>"; };
 		0DBFD90A52471EF4CE98A828 /* LocalCalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCalendarEvent.swift; sourceTree = "<group>"; };
 		11C7BBB4BDFDC527BB2AD15C /* HolidayStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayStoreTests.swift; sourceTree = "<group>"; };
+		12E38F69C9CD47A1A6D4C188 /* ApplicationPresentationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPresentationPolicy.swift; sourceTree = "<group>"; };
 		1A06CDA014B2FA32CD36D15E /* MonthNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthNavigation.swift; sourceTree = "<group>"; };
 		1E6AA1C16D5AAE616B599B46 /* Calendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21A8A7606F3F0FD4A0853F29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		E1914F3E86E55098AD24AAD0 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				12E38F69C9CD47A1A6D4C188 /* ApplicationPresentationPolicy.swift */,
 				2F66C9447C2879837AA8A809 /* AppDelegate.swift */,
 				4F42907D29C9149598E9C15A /* AppEntry.swift */,
 			);
@@ -406,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				416F89C374807DF379984AE5 /* AlmanacDetail.swift in Sources */,
+				05C2A4E7AF4C4E5DAB18D132 /* ApplicationPresentationPolicy.swift in Sources */,
 				3132681F9244B69B81981078 /* AppDelegate.swift in Sources */,
 				70415EE01F5170443A07888A /* AppEntry.swift in Sources */,
 				6CC66C5CCC8C45D032ED704A /* AppUpdater.swift in Sources */,

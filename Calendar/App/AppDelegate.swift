@@ -67,6 +67,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSPo
 
     @objc func showMainWindow() {
         closePopover()
+        NSApp.setActivationPolicy(.regular)
         if mainWindow == nil {
             let content = CalendarWindow(state: state, holidays: holidays, calendarEvents: calendarEvents,
                                          openSettings: { [weak self] in self?.showSettings() })
@@ -89,12 +90,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSPo
 
     @objc func showSettings() {
         closePopover()
+        NSApp.setActivationPolicy(.regular)
         if settingsWindow == nil {
             let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 510, height: 510),
                                   styleMask: [.titled, .closable], backing: .buffered, defer: false)
             window.title = "设置"
             window.contentView = NSHostingView(rootView: SettingsView(state: state, holidays: holidays, updater: updater))
             window.isReleasedWhenClosed = false
+            window.delegate = self
             window.center()
             settingsWindow = window
         }
@@ -256,6 +259,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSPo
 
     func popoverDidClose(_ notification: Notification) {
         removePopoverDismissalMonitors()
+    }
+
+    func windowWillClose(_ notification: Notification) {
+        guard let window = notification.object as? NSWindow,
+              window === mainWindow || window === settingsWindow else { return }
+        // isVisible changes after this callback. Re-evaluate on the next run-loop turn.
+        DispatchQueue.main.async { [weak self] in self?.updateActivationPolicy() }
+    }
+
+    private func updateActivationPolicy() {
+        let policy = ApplicationPresentationPolicy.activationPolicy(
+            mainWindowVisible: mainWindow?.isVisible == true,
+            settingsWindowVisible: settingsWindow?.isVisible == true
+        )
+        NSApp.setActivationPolicy(policy)
     }
     @objc private func goToday() { state.goToday() }
     @objc private func previousMonth() { state.changeMonth(-1) }

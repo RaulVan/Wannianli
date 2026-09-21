@@ -4,6 +4,20 @@ import AppKit
 
 final class CalendarTests: XCTestCase {
     let engine = CalendarEngine()
+    func testApplicationPresentationPolicyFollowsVisibleWindows() {
+        XCTAssertEqual(
+            ApplicationPresentationPolicy.activationPolicy(mainWindowVisible: true, settingsWindowVisible: false),
+            .regular
+        )
+        XCTAssertEqual(
+            ApplicationPresentationPolicy.activationPolicy(mainWindowVisible: false, settingsWindowVisible: true),
+            .regular
+        )
+        XCTAssertEqual(
+            ApplicationPresentationPolicy.activationPolicy(mainWindowVisible: false, settingsWindowVisible: false),
+            .accessory
+        )
+    }
     func testUpdateFrequencyResolvesAutomaticCheckPolicy() {
         XCTAssertEqual(
             AppUpdater.UpdateFrequency.resolve(automaticallyChecks: false, interval: 24 * 60 * 60),

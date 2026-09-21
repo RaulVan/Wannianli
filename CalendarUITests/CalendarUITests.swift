@@ -1,6 +1,19 @@
 import XCTest
 
 final class CalendarUITests: XCTestCase {
+    func testClosingMainWindowKeepsMenuBarAppAndHidesRegularAppUI() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing", "--fixed-today", "2026-09-19"]
+        app.launch()
+
+        let main = app.windows["万年历"]
+        XCTAssertTrue(main.waitForExistence(timeout: 10))
+        main.buttons[XCUIIdentifierCloseWindow].click()
+        XCTAssertFalse(main.waitForExistence(timeout: 2))
+        XCTAssertTrue(app.state == .runningForeground || app.state == .runningBackground)
+        XCTAssertFalse(app.menuBars.menuBarItems["万年历"].exists)
+    }
+
     func testUpdateFrequencyOffersNeverDailyAndWeekly() {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing", "--fixed-today", "2026-09-19", "--show-settings"]
