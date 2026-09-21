@@ -2,6 +2,8 @@
 
 一款原生 macOS 万年历应用，提供公历、农历、节气、传统黄历、中国大陆节假日、本地 Apple 日历事件和菜单栏快捷查看。
 
+![万年历主窗口与菜单栏面板预览](docs/images/wannianli-showcase.png)
+
 ## 功能
 
 - 月视图同时显示公历日期、农历日期、节气和传统节日。
@@ -36,6 +38,8 @@
 - 应用不会将日历事件上传到服务器。
 - 联网仅用于更新节假日数据、检查软件更新和下载新版本。
 
+
+
 ## 软件更新
 
 应用集成 [Sparkle 2](https://github.com/sparkle-project/Sparkle)：
@@ -69,6 +73,8 @@ xcodebuild test \
   -only-testing:CalendarTests
 ```
 
+
+
 ## 发布新版本
 
 1. 在 `project.yml` 中递增 `MARKETING_VERSION` 和 `CURRENT_PROJECT_VERSION`。
@@ -98,6 +104,8 @@ project.yml           XcodeGen 工程定义（配置权威来源）
 appcast.xml           Sparkle 更新 Feed
 ```
 
+
+
 ## 数据与依赖
 
 - [LunarSwift](https://github.com/6tail/lunar-swift)：农历与黄历计算，MIT License。
@@ -118,3 +126,4 @@ appcast.xml           Sparkle 更新 Feed
 - Bundle ID：`local.Calendar.Wannianli`。
 - 当前版本：1.0.2（Build 3）。
 - 当前发布策略：公开 GitHub Release、Sparkle EdDSA 校验、不做 Apple 公证。
+
