@@ -66,31 +66,31 @@ private struct SmallCalendarWidget: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            WidgetDateHeader(day: day, colorScheme: colorScheme, fontSize: 10)
-            Spacer(minLength: 2)
-            Text("\(day.civil.day)")
-                .font(.system(size: 48, weight: .medium, design: .serif))
+            WidgetDateHeader(day: day, colorScheme: colorScheme, fontSize: 9)
+            Spacer(minLength: 0)
+            Text(verbatim: String(day.civil.day))
+                .font(.system(size: 42, weight: .medium, design: .serif))
                 .foregroundStyle(WidgetDesign.red(for: colorScheme))
                 .lineLimit(1)
             Text(day.lunarTitle)
-                .font(WidgetDesign.lunarFont(17))
+                .font(WidgetDesign.lunarFont(15))
                 .foregroundStyle(WidgetDesign.red(for: colorScheme))
                 .lineLimit(1)
             Text("\(day.lunar.yearInGanZhi)年 · \(day.lunar.yearShengXiao)")
-                .font(.system(size: 10, weight: .medium))
-                .foregroundStyle(WidgetDesign.ink(for: colorScheme))
+                .font(.system(size: 9, weight: .medium))
+                .foregroundStyle(WidgetDesign.secondary(for: colorScheme))
                 .lineLimit(1)
-                .minimumScaleFactor(0.7)
-            Spacer(minLength: 5)
+            Spacer(minLength: 0)
             Rectangle()
                 .fill(WidgetDesign.line(for: colorScheme))
                 .frame(height: 1)
-            Spacer(minLength: 5)
-            WidgetAuspiceRow(title: "宜", items: day.lunar.dayYi, compact: true, colorScheme: colorScheme)
-            Spacer(minLength: 4)
-            WidgetAuspiceRow(title: "忌", items: day.lunar.dayJi, compact: true, colorScheme: colorScheme)
+                .padding(.bottom, 5)
+            WidgetAuspiceRow(title: "宜", items: day.lunar.dayYi, size: .small, colorScheme: colorScheme)
+                .padding(.bottom, 3)
+            WidgetAuspiceRow(title: "忌", items: day.lunar.dayJi, size: .small, colorScheme: colorScheme)
         }
-        .padding(11)
+        .padding(10)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(widgetAccessibilityLabel)
     }
@@ -108,7 +108,7 @@ private struct MediumCalendarWidget: View {
         HStack(alignment: .center, spacing: 18) {
             VStack(spacing: 0) {
                 WidgetDateHeader(day: day, colorScheme: colorScheme, fontSize: 12)
-                Text("\(day.civil.day)")
+                Text(verbatim: String(day.civil.day))
                     .font(.system(size: 58, weight: .medium, design: .serif))
                     .foregroundStyle(WidgetDesign.red(for: colorScheme))
                     .lineLimit(1)
@@ -118,7 +118,7 @@ private struct MediumCalendarWidget: View {
                     .lineLimit(1)
                 Text("\(day.lunar.yearInGanZhi)年 · \(day.lunar.yearShengXiao)")
                     .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(WidgetDesign.ink(for: colorScheme))
+                    .foregroundStyle(WidgetDesign.secondary(for: colorScheme))
                     .lineLimit(1)
             }
             .frame(maxWidth: .infinity)
@@ -128,12 +128,12 @@ private struct MediumCalendarWidget: View {
                 .frame(width: 1)
 
             VStack(alignment: .leading, spacing: 12) {
-                WidgetAuspiceRow(title: "宜", items: day.lunar.dayYi, compact: false, colorScheme: colorScheme)
-                WidgetAuspiceRow(title: "忌", items: day.lunar.dayJi, compact: false, colorScheme: colorScheme)
+                WidgetAuspiceRow(title: "宜", items: day.lunar.dayYi, size: .medium, colorScheme: colorScheme)
+                WidgetAuspiceRow(title: "忌", items: day.lunar.dayJi, size: .medium, colorScheme: colorScheme)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(16)
+        .padding(20)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(day.civil.year)年\(day.civil.month)月\(day.civil.day)日，\(day.lunarTitle)，宜\(day.lunar.dayYi.joined(separator: "、"))，忌\(day.lunar.dayJi.joined(separator: "、"))")
     }
@@ -147,7 +147,7 @@ private struct LargeCalendarWidget: View {
         VStack(spacing: 0) {
             WidgetDateHeader(day: day, colorScheme: colorScheme, fontSize: 15)
             Spacer(minLength: 4)
-            Text("\(day.civil.day)")
+            Text(verbatim: String(day.civil.day))
                 .font(.system(size: 90, weight: .medium, design: .serif))
                 .foregroundStyle(WidgetDesign.red(for: colorScheme))
                 .lineLimit(1)
@@ -157,18 +157,18 @@ private struct LargeCalendarWidget: View {
                 .lineLimit(1)
             Text("\(day.lunar.yearInGanZhi)年 · \(day.lunar.yearShengXiao)")
                 .font(.system(size: 17, weight: .medium))
-                .foregroundStyle(WidgetDesign.ink(for: colorScheme))
+                .foregroundStyle(WidgetDesign.secondary(for: colorScheme))
             Spacer(minLength: 14)
             Rectangle()
                 .fill(WidgetDesign.line(for: colorScheme))
                 .frame(height: 1)
             Spacer(minLength: 14)
             VStack(spacing: 12) {
-                WidgetAuspiceRow(title: "宜", items: day.lunar.dayYi, compact: false, colorScheme: colorScheme)
-                WidgetAuspiceRow(title: "忌", items: day.lunar.dayJi, compact: false, colorScheme: colorScheme)
+                WidgetAuspiceRow(title: "宜", items: day.lunar.dayYi, size: .large, colorScheme: colorScheme)
+                WidgetAuspiceRow(title: "忌", items: day.lunar.dayJi, size: .large, colorScheme: colorScheme)
             }
         }
-        .padding(20)
+        .padding(26)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(day.civil.year)年\(day.civil.month)月\(day.civil.day)日，\(day.lunarTitle)，宜\(day.lunar.dayYi.joined(separator: "、"))，忌\(day.lunar.dayJi.joined(separator: "、"))")
     }
@@ -180,33 +180,53 @@ private struct WidgetDateHeader: View {
     let fontSize: CGFloat
 
     var body: some View {
-        Text("\(day.civil.year)年\(day.civil.month)月\(day.civil.day)日  \(day.weekday)")
+        Text(verbatim: "\(day.civil.year)年\(day.civil.month)月\(day.civil.day)日  \(day.weekday)")
             .font(.system(size: fontSize, weight: .semibold))
             .foregroundStyle(WidgetDesign.ink(for: colorScheme))
             .lineLimit(1)
-            .minimumScaleFactor(0.65)
+            .minimumScaleFactor(0.9)
             .frame(maxWidth: .infinity)
     }
 }
 
 private struct WidgetAuspiceRow: View {
+    enum Size {
+        case small, medium, large
+
+        var badge: CGFloat {
+            switch self {
+            case .small: 20
+            case .medium: 32
+            case .large: 34
+            }
+        }
+
+        var text: CGFloat {
+            switch self {
+            case .small: 10
+            case .medium: 14
+            case .large: 16
+            }
+        }
+    }
+
     let title: String
     let items: [String]
-    let compact: Bool
+    let size: Size
     let colorScheme: ColorScheme
 
     var body: some View {
-        HStack(spacing: compact ? 6 : 10) {
+        HStack(spacing: size == .small ? 6 : 10) {
             Text(title)
-                .font(.system(size: compact ? 12 : 16, weight: .semibold))
+                .font(.system(size: size.badge / 2, weight: .semibold))
                 .foregroundStyle(.white)
-                .frame(width: compact ? 24 : 34, height: compact ? 24 : 34)
-                .background(title == "宜" ? WidgetDesign.green(for: colorScheme) : WidgetDesign.red(for: colorScheme), in: RoundedRectangle(cornerRadius: compact ? 7 : 9))
+                .frame(width: size.badge, height: size.badge)
+                .background(title == "宜" ? WidgetDesign.badgeGreen(for: colorScheme) : WidgetDesign.badgeRed(for: colorScheme), in: RoundedRectangle(cornerRadius: size == .small ? 6 : 9))
             Text(summary)
-                .font(.system(size: compact ? 10 : 14, weight: .medium))
+                .font(.system(size: size.text, weight: .medium))
                 .foregroundStyle(WidgetDesign.ink(for: colorScheme))
                 .lineLimit(1)
-                .minimumScaleFactor(0.68)
+                .truncationMode(.tail)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -228,5 +248,6 @@ struct CalendarWidget: Widget {
         .configurationDisplayName("万年历")
         .description("查看今日公历、农历、干支与宜忌。")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .contentMarginsDisabled()
     }
 }

@@ -46,6 +46,8 @@
   - 验证：WidgetKit 支持小号、中号、大号；时间线在本地日界点后请求下一天；明暗模式使用独立适配色值。
 - [x] 构建、运行并验证小组件扩展与主 App 嵌入关系。
   - 验证：`xcodebuild build -project Calendar.xcodeproj -scheme Calendar -destination 'platform=macOS'`、19 项单元测试和 `./script/build_and_run.sh --verify` 均通过；`WannianliWidget.appex` 已嵌入主 App。
+- [x] 修复实际小组件的年份千位分隔符与小号布局裁切，并优化三种尺寸的文字可读性。
+  - 验证：Debug 构建、扩展嵌入和签名校验通过；小号压缩内容高度并统一由组件管理边距；三种尺寸的宜忌摘要不再缩到过小字号。新的系统小组件图库画面尚未复查。
 
 ## 约束
 - 项目已在 Git 仓库中；本轮小组件改动仅创建本地提交，不推送或发布。

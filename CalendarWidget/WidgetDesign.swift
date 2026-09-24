@@ -13,6 +13,8 @@ enum WidgetDesign {
     static let darkGreen = Color(red: 0.384, green: 0.788, blue: 0.604)
     static let lightLine = Color(red: 0.890, green: 0.875, blue: 0.863)
     static let darkLine = Color(red: 0.259, green: 0.259, blue: 0.259)
+    static let darkBadgeRed = Color(red: 0.780, green: 0.176, blue: 0.220)
+    static let darkBadgeGreen = Color(red: 0.129, green: 0.490, blue: 0.337)
 
     static func background(for scheme: ColorScheme) -> Color {
         scheme == .dark ? darkBackground : lightBackground
@@ -32,6 +34,14 @@ enum WidgetDesign {
 
     static func green(for scheme: ColorScheme) -> Color {
         scheme == .dark ? darkGreen : lightGreen
+    }
+
+    static func badgeRed(for scheme: ColorScheme) -> Color {
+        scheme == .dark ? darkBadgeRed : lightRed
+    }
+
+    static func badgeGreen(for scheme: ColorScheme) -> Color {
+        scheme == .dark ? darkBadgeGreen : lightGreen
     }
 
     static func line(for scheme: ColorScheme) -> Color {
