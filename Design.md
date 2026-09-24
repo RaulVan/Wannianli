@@ -23,3 +23,10 @@
 - 安装包静态默认图标固定显示 12；应用启动后替换为当天日号。
 - 动态底图：`Resources/Icon/calendar-base.png`，运行时使用 Baskerville SemiBold 和朱红色绘制 `1...31`。
 - 动态图标覆盖 Dock、应用切换器和应用运行期间的图标；Finder 中未运行的 `.app` 使用静态 AppIcon。
+
+## WidgetKit 小组件
+- 设计基准：`design/wannianli-widget-reference.png`，展示小号与中号两种 macOS WidgetKit 尺寸。
+- 信息层级：顶部公历日期；中央大号红色日号；农历日期与干支生肖；底部宜、忌摘要。
+- 小号组件压缩横向间距但保留完整信息层级；中号组件增加内容留白并允许更长的宜忌摘要。
+- 使用 WidgetKit `containerBackground(for: .widget)`，背景、正文、次级文字和强调色随明暗模式适配；不将设计稿作为运行时界面图片。
+- 时间线在本地日历日界点刷新，WidgetKit 负责在系统允许的窗口重新请求下一天数据。

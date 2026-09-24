@@ -40,9 +40,15 @@
   - 验证：真实截图整理到 `docs/images/`，README 使用相对路径引用；生成式横幅与真实截图分开标注。
 - [x] 修复切换日期后重新打开主窗口或菜单栏窗口仍停留在旧日期的问题。
   - 验证：主窗口和菜单栏面板重新展示入口均调用 `CalendarState.goToday()`；19 项单元测试、专项 UI 回归测试通过；`./script/build_and_run.sh --verify` 构建并启动成功。
+- [x] 生成并检查 WidgetKit 小组件设计基准（小号、中号）。
+  - 验证：设计稿保存为 `design/wannianli-widget-reference.png`，保留小号与中号的日期、农历、干支及宜忌层级。
+- [x] 实现 WidgetKit 小组件：公历日期、农历、干支及宜忌摘要随每日时间线更新。
+  - 验证：WidgetKit 支持小号、中号、大号；时间线在本地日界点后请求下一天；明暗模式使用独立适配色值。
+- [x] 构建、运行并验证小组件扩展与主 App 嵌入关系。
+  - 验证：`xcodebuild build -project Calendar.xcodeproj -scheme Calendar -destination 'platform=macOS'`、19 项单元测试和 `./script/build_and_run.sh --verify` 均通过；`WannianliWidget.appex` 已嵌入主 App。
 
 ## 约束
-- 当前目录不是 Git 仓库；遵循用户要求，不自行初始化，不推送或发布。
+- 项目已在 Git 仓库中；本轮小组件改动仅创建本地提交，不推送或发布。
 - 用户目标为原生 macOS，Product Design 网页模板和浏览器验收改用原生组件及运行截图；保留视觉对照检查。
 - 截图数据仅作视觉参考，历法及假期使用实际数据，不硬编码展示日期。
 

@@ -26,6 +26,8 @@ targets:
       - package: LunarSwift
       - package: Sparkle
         product: Sparkle
+      - target: CalendarWidget
+        embed: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: local.Calendar.Wannianli
@@ -51,6 +53,29 @@ targets:
         com.apple.security.temporary-exception.mach-lookup.global-name:
           - $(PRODUCT_BUNDLE_IDENTIFIER)-spks
           - $(PRODUCT_BUNDLE_IDENTIFIER)-spki
+  CalendarWidget:
+    type: app-extension
+    platform: macOS
+    sources:
+      - path: CalendarWidget
+      - path: Calendar/Models/CalendarDay.swift
+      - path: Calendar/Services/CalendarEngine.swift
+    dependencies:
+      - package: LunarSwift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: local.Calendar.Wannianli.Widget
+        PRODUCT_NAME: WannianliWidget
+        PRODUCT_MODULE_NAME: WannianliWidget
+        MARKETING_VERSION: 1.0.2
+        CURRENT_PROJECT_VERSION: 3
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: CalendarWidget/Info.plist
+        SKIP_INSTALL: YES
+    entitlements:
+      path: CalendarWidget/CalendarWidget.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
   CalendarTests:
     type: bundle.unit-test
     platform: macOS
@@ -78,5 +103,6 @@ schemes:
     build:
       targets:
         Calendar: all
+        CalendarWidget: all
     test:
       targets: [CalendarTests, CalendarUITests]

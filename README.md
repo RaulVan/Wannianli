@@ -4,6 +4,12 @@
 
 ![万年历主窗口与菜单栏面板预览](docs/images/wannianli-showcase.png)
 
+### macOS 小组件设计基准
+
+![万年历 WidgetKit 小组件设计稿](design/wannianli-widget-reference.png)
+
+小组件使用 WidgetKit 原生扩展，提供小号、中号和大号三种尺寸，展示当天公历、农历、干支生肖以及宜忌摘要。时间线按本地日界点刷新，颜色和背景跟随 macOS 浅色／深色外观。
+
 ## 功能
 
 - 月视图同时显示公历日期、农历日期、节气和传统节日。
@@ -11,6 +17,7 @@
 - 展示每日宜忌、干支、冲煞、五行、彭祖百忌、吉凶神等黄历信息。
 - 读取 macOS“日历”App 已同步的本地、iCloud、CalDAV 和 Exchange 事件。
 - 菜单栏面板快速查看月历、黄历、日程和节日倒计时。
+- macOS 桌面小组件显示当天公历、农历、干支生肖和宜忌摘要。
 - 鼠标左右拖动或触控板双指横向滑动切换月份。
 - 支持浅色、深色以及跟随系统外观。
 - 支持登录时启动。
@@ -97,6 +104,7 @@ Calendar/Design       设计 Token
 Calendar/Models       日期、节假日和本地日程模型
 Calendar/Services     历法、节假日、EventKit、Sparkle 更新与动态图标
 Calendar/Views        主窗口、菜单面板、设置和日历组件
+CalendarWidget        WidgetKit 小组件扩展及共享历法渲染数据
 CalendarTests         单元测试
 CalendarUITests       UI 测试
 script                构建、图标、截图和 Release 脚本
@@ -126,4 +134,3 @@ appcast.xml           Sparkle 更新 Feed
 - Bundle ID：`local.Calendar.Wannianli`。
 - 当前版本：1.0.2（Build 3）。
 - 当前发布策略：公开 GitHub Release、Sparkle EdDSA 校验、不做 Apple 公证。
-

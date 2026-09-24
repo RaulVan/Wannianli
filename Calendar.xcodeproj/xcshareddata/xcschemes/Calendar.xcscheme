@@ -21,6 +21,20 @@
                ReferencedContainer = "container:Calendar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D370D6C1B7CE189312C4B681"
+               BuildableName = "CalendarWidget.appex"
+               BlueprintName = "CalendarWidget"
+               ReferencedContainer = "container:Calendar.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
