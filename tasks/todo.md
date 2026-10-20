@@ -93,7 +93,8 @@
 ## 2026-10-20 推送 GitHub 并执行 Actions 打包、公证
 
 - [x] 用户已明确授权推送当前提交并执行 Actions；确认目标 `RaulVan/Wannianli` 的 `main`，保留已有工程与 Scheme 未提交改动。
-- [ ] 推送已提交的应用、小组件、CI 与签名资源说明；由 push 自动触发一次打包、公证工作流。
-- [ ] 跟踪远端运行，核实构建、自动签名、公证、产物上传和凭据清理；本次回归在范围内修复并重跑。
-- [ ] 下载并检查成功产物或失败诊断，记录最终状态、链接和剩余阻塞。
+- [x] 已推送至远端 `main`（执行提交 `b26b0b5`），自动触发 Actions run `39348530837`：https://github.com/RaulVan/Wannianli/actions/runs/39348530837 。
+- [x] 远端运行完成：双架构归档、Developer ID 自动签名导出、签名校验、诊断 Artifact 上传和凭据清理成功；公证被 Apple 7000 拒绝，非本次构建回归。
+- [x] 已下载并核对 `macOS-diagnostics-39348530837-1`；Apple 公证提交 `5cc89034-32ef-479e-a1fc-4eae3afe20eb`，Rejected / 7000、issues=null；已公证安装包未生成。
+- [ ] 受阻：需要 Apple Developer Program Support 恢复团队公证服务；恢复后重跑失败任务，才能完成票据装订、Gatekeeper 验收和成功安装包交付。
 - 授权范围：GitHub 提交及 Actions 打包、公证；不创建公开 Release、不更新 Appcast、不安装或启动 App。

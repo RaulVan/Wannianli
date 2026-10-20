@@ -50,6 +50,23 @@ Apple 公证等待上限为 30 分钟。超时后 Apple 可能继续处理，可
 - arm64 / x86_64 归档、Developer ID 自动签名导出通过；主 App、Widget 和 Sparkle 内嵌组件通过深度签名校验。主 App / Widget 均启用 Hardened Runtime，且无调试权限。
 - 临时钥匙串导入、非交互签名访问、清理和恢复原钥匙串搜索列表通过；缺少 Secrets 时在导入前失败。6 项仓库 Secrets 已确认存在。
 - 实际提交 Apple 公证，提交 ID：`576aee17-b4a3-4087-90c5-a18b467be105`。Apple 返回 `Rejected`、`statusCode: 7000`、`issues: null`，团队尚未配置公证。完整日志保存在本地 `build/ci-validation/logs/notarization-log.json`。
-- 票据装订、Gatekeeper 接受及成功安装包尚未验证；流程在 Apple 拒绝处停止。远端 Actions 运行尚未验证，工作流未推送。
+- 票据装订、Gatekeeper 接受及成功安装包尚未验证；流程在 Apple 拒绝处停止。此为推送前的本地验收结果；后续远端运行结果见下节。
 
 7000 的处理路径是 [Apple Developer Program Support](https://developer.apple.com/contact/)，这是团队账号配置问题；Apple DTS 在[官方说明](https://developer.apple.com/forums/thread/118465)中明确要求通过此渠道处理。联系时提供 Team ID、上述公证提交 ID 和完整日志。团队服务恢复后，在 GitHub Actions 页面重新运行工作流即可继续公证验收。
+
+## 2026-10-20 GitHub Actions 实际执行结果
+
+用户授权后，已将应用、小组件和 CI 提交推送到 `main`，由 push 自动触发[运行 39348530837](https://github.com/RaulVan/Wannianli/actions/runs/39348530837)，执行提交为 `b26b0b5`。
+
+- 成功：Apple 凭据导入、arm64 / x86_64 归档、Developer ID 自动签名导出、主 App / Widget 及 Sparkle 内嵌组件签名校验、诊断日志上传、临时钥匙串和 API Key 清理。
+- 公证：Apple 提交 ID `5cc89034-32ef-479e-a1fc-4eae3afe20eb`，返回 `Rejected` / `7000`，原因是团队尚未配置公证，`issues` 为 `null`。运行因此失败。
+- 产物：`macOS-diagnostics-39348530837-1` 已上传并下载核验；已公证 ZIP 未生成，票据装订和 Gatekeeper 验收未执行。
+- 本地日志：`build/ci-remote/artifacts/macOS-diagnostics-39348530837-1/notarization-log.json`。原有 Xcode 工程和 Scheme 工作区改动保持未提交。未创建公开 Release，未更新 Appcast。
+
+账号持有人联系 Apple Developer Program Support 解除团队限制后，可执行以下命令重跑失败任务：
+
+```bash
+gh run rerun 39348530837 --repo RaulVan/Wannianli --failed
+```
+
+本次结果记录为文档提交，使用 `[skip ci]` 避免仅因日志记录重复提交公证；构建脚本和工作流保持本次已执行版本。
