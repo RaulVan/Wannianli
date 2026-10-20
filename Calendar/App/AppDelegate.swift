@@ -26,6 +26,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSPo
         let testing = false
         #endif
         let defaults = testing ? UserDefaults(suiteName: "local.Calendar.UITests.Settings")! : .standard
+        let launchedAtLogin = ApplicationLaunchContext.isLoginItem(
+            NSAppleEventManager.shared().currentAppleEvent
+        ) || (testing && args.contains("--simulate-login-item"))
         if testing { defaults.removePersistentDomain(forName: "local.Calendar.UITests.Settings") }
         let requestedFixedToday = args.firstIndex(of: "--fixed-today").flatMap { index in
             args.indices.contains(index + 1) ? CivilDate(iso: args[index + 1]) : nil
@@ -44,7 +47,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSPo
             guard let self else { return }
             Task { await self.calendarEvents.reload(for: date) }
         }.store(in: &subscriptions)
-        showMainWindow()
+        if launchedAtLogin {
+            NSApp.setActivationPolicy(.accessory)
+        } else {
+            showMainWindow()
+        }
         #if DEBUG
         if testing && args.contains("--dark") { state.appearance = "dark" }
         if testing && args.contains("--show-menu") {

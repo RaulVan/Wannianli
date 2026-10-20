@@ -48,6 +48,10 @@
   - 验证：`xcodebuild build -project Calendar.xcodeproj -scheme Calendar -destination 'platform=macOS'`、19 项单元测试和 `./script/build_and_run.sh --verify` 均通过；`WannianliWidget.appex` 已嵌入主 App。
 - [x] 修复实际小组件的年份千位分隔符与小号布局裁切，并优化三种尺寸的文字可读性。
   - 验证：Debug 构建、扩展嵌入和签名校验通过；小号压缩内容高度并统一由组件管理边距；三种尺寸的宜忌摘要不再缩到过小字号。新的系统小组件图库画面尚未复查。
+- [x] 登录时启动仅显示菜单栏，手动启动和重新打开仍显示主窗口。
+  - 验证：启动事件识别单元测试、模拟登录启动和主窗口关闭后的界面测试通过；手动启动的主窗口路径由界面回归覆盖。真实系统重新登录尚未执行。
+- [x] 打包并安装包含 WidgetKit 扩展的本地 App，保留 Applications 中旧包的备份。
+  - 验证：Release 构建通过，主程序及扩展均为 x86_64/arm64；WidgetKit 扩展嵌入、整包签名、ZIP 解压和 SHA-256 校验通过。`/Applications/万年历.app` 已替换，`pluginkit` 指向其 Widget 扩展；旧包保存在 `release/applications-backup-20261020.22e8nn/万年历.app`。系统小组件图库的可见状态尚未人工复查。
 
 ## 约束
 - 项目已在 Git 仓库中；本轮小组件改动仅创建本地提交，不推送或发布。
@@ -62,3 +66,13 @@
 - 菜单面板：实际显示时检测到 layer 25 面板窗口；切换 Finder 后该窗口消失，应用失焦收起通过。点击外部与 Esc 的事件路径已编译，受自动化输入权限限制未做系统级模拟点击验收。
 - Dock 图标透明度：基础图、静态数字 12 和 1024 AppIcon 均为非全不透明图，四角 alpha=0；动态渲染角点 alpha 单元测试及 Debug 构建启动通过。当前环境不能读取显示器画面，未取得 Dock 实景截图。
 - “今天”修复：测试固定日期改为显式 `--fixed-today YYYY-MM-DD`，旧的 `--fixed-day 3` 不再生效；普通启动只读系统日期。新增从 3 日返回系统 19 日的回归测试，连同既有测试共 13 项通过，Debug 构建启动通过。
+
+
+## 2026-10-20 GitHub Actions Apple 签名与公证
+
+- [x] 确认 macOS 工程、GitHub 目标仓库及已有改动；保护 applekey 密钥目录。
+- [ ] 使用 asc-cli 核实 API 认证、Developer ID 证书及必要描述文件。
+- [ ] 实现 PR 编译检查和主分支自动签名、公证、打包与失败清理。
+- [ ] 配置 GitHub Secrets，记录使用方式。
+- [ ] 完成最小充分验证，创建仅含本次变更的本地提交。
+- 发布状态：不推送、不创建 Release、不更新 Sparkle Appcast；远端 Actions 执行需工作流推送后验证。

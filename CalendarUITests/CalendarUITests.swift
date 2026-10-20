@@ -1,6 +1,23 @@
+import AppKit
 import XCTest
 
 final class CalendarUITests: XCTestCase {
+    private var testedAppPolicy: NSApplication.ActivationPolicy? {
+        NSRunningApplication.runningApplications(withBundleIdentifier: "local.Calendar.Wannianli")
+            .first { $0.bundleURL?.path.contains("/Build/Products/") == true }?
+            .activationPolicy
+    }
+
+    func testLoginLaunchKeepsMainWindowClosed() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing", "--simulate-login-item"]
+        app.launch()
+
+        XCTAssertFalse(app.windows["万年历"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.state == .runningForeground || app.state == .runningBackground)
+        XCTAssertEqual(testedAppPolicy, .accessory)
+    }
+
     func testClosingMainWindowKeepsMenuBarAppAndHidesRegularAppUI() {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing", "--fixed-today", "2026-09-19"]
@@ -8,10 +25,16 @@ final class CalendarUITests: XCTestCase {
 
         let main = app.windows["万年历"]
         XCTAssertTrue(main.waitForExistence(timeout: 10))
+        XCTAssertEqual(testedAppPolicy, .regular)
         main.buttons[XCUIIdentifierCloseWindow].click()
         XCTAssertFalse(main.waitForExistence(timeout: 2))
         XCTAssertTrue(app.state == .runningForeground || app.state == .runningBackground)
-        XCTAssertFalse(app.menuBars.menuBarItems["万年历"].exists)
+        let hiddenFromDock = XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in
+                self.testedAppPolicy == .accessory
+            }, object: nil
+        )
+        XCTAssertEqual(XCTWaiter.wait(for: [hiddenFromDock], timeout: 3), .completed)
     }
 
     func testReopeningMainAndMenuReturnsToTodayAfterBrowsing() {

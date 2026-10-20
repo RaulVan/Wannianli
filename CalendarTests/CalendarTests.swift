@@ -1,9 +1,39 @@
 import XCTest
 import AppKit
+import CoreServices
 @testable import Wannianli
 
 final class CalendarTests: XCTestCase {
     let engine = CalendarEngine()
+    func testLoginItemLaunchEventOnlySuppressesAutomaticWindow() {
+        let event = NSAppleEventDescriptor.appleEvent(
+            withEventClass: AEEventClass(kCoreEventClass),
+            eventID: AEEventID(kAEOpenApplication),
+            targetDescriptor: nil,
+            returnID: AEReturnID(kAutoGenerateReturnID),
+            transactionID: AETransactionID(kAnyTransactionID)
+        )
+        XCTAssertFalse(ApplicationLaunchContext.isLoginItem(event))
+
+        event.setParam(
+            NSAppleEventDescriptor(enumCode: OSType(keyAELaunchedAsLogInItem)),
+            forKeyword: AEKeyword(keyAEPropData)
+        )
+        XCTAssertTrue(ApplicationLaunchContext.isLoginItem(event))
+
+        let reopen = NSAppleEventDescriptor.appleEvent(
+            withEventClass: AEEventClass(kCoreEventClass),
+            eventID: AEEventID(kAEReopenApplication),
+            targetDescriptor: nil,
+            returnID: AEReturnID(kAutoGenerateReturnID),
+            transactionID: AETransactionID(kAnyTransactionID)
+        )
+        reopen.setParam(
+            NSAppleEventDescriptor(enumCode: OSType(keyAELaunchedAsLogInItem)),
+            forKeyword: AEKeyword(keyAEPropData)
+        )
+        XCTAssertFalse(ApplicationLaunchContext.isLoginItem(reopen))
+    }
     func testApplicationPresentationPolicyFollowsVisibleWindows() {
         XCTAssertEqual(
             ApplicationPresentationPolicy.activationPolicy(mainWindowVisible: true, settingsWindowVisible: false),
