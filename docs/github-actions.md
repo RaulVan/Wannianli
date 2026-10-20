@@ -26,6 +26,8 @@
 
 本地恢复副本保留在被忽略的 `applekey/developer-id-ci.p12`，密码位于同目录 `ci-p12-password.txt`，两者权限均为 `0600`。
 
+已补齐本地签名资源：`applekey/developer-id-application.cer`、主 App 的 `Wannianli-DeveloperID.provisionprofile`、Widget 的 `WannianliWidget-DeveloperID.provisionprofile`。两个 Bundle ID 已在同团队注册，描述文件类型均为 `MAC_APP_DIRECT`、状态 `ACTIVE`。独立证书与 P12 完全匹配；描述文件的 Bundle ID、Team ID、证书关联、有效期、CMS 内容签名与 Apple 根证书信任链均已核验。本地 `applekey/README.md` 和 `signing-resources.json` 记录交付清单和校验结果；证书及描述文件没有提交 Git。CI 继续通过 Xcode Automatic signing 按需获取描述文件。
+
 `script/ci/signing.sh` 把 P12 导入短期钥匙串，允许 codesign 非交互访问；API Key 以权限受限文件写入 runner 临时目录。`always()` 清理步骤恢复钥匙串搜索列表并删除临时凭据。Runner 中断或强制终止仍由 GitHub 托管 runner 的销毁机制清理。
 
 `script/ci/build-notarized.sh` 使用 XcodeGen 生成工程，先归档，再通过 `signingStyle=automatic` / `method=developer-id` 导出。Xcode 负责主 App、Widget 和 Sparkle 内嵌组件的发行签名，避免只签外层 framework。当前 App 与 Widget 权限不需要额外的 Developer ID provisioning profile；若以后加入依赖描述文件的受限能力，导出允许 Xcode 使用 API Key 自动管理。

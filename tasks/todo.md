@@ -80,3 +80,11 @@
 - [ ] 未执行：stapler 与 Gatekeeper 接受验收依赖 Apple 公证成功。
 - [x] 创建仅含 CI 工作流、脚本、忽略规则和相关文档的本地提交；已有工程改动保持未暂存。
 - 发布状态：不推送、不创建 Release、不更新 Sparkle Appcast；远端 Actions 执行需工作流推送后验证。
+
+
+## 2026-10-20 补齐本地 Apple 签名资源
+
+- [x] 核对 `applekey/`：已有 Developer ID P12 和密码，缺少独立证书和主 App / Widget 描述文件。
+- [x] 使用项目 Key 下载现有 Developer ID 证书；为主 App、Widget 注册现有项目 Bundle ID，创建并下载两个 ACTIVE / MAC_APP_DIRECT 描述文件。
+- [x] 证书及描述文件保存到 `applekey/`；CER 与 P12 一致，两个描述文件的 Team ID、Bundle ID、有效期及证书关联匹配；CMS 签名与 Apple 根证书链验证通过，已生成资源清单。
+- [x] 更新本地与项目交付说明及经验记录，创建本地文档提交；签名资源保持忽略，原有工程改动保持未暂存，不推送。
