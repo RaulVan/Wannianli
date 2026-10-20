@@ -71,8 +71,12 @@
 ## 2026-10-20 GitHub Actions Apple 签名与公证
 
 - [x] 确认 macOS 工程、GitHub 目标仓库及已有改动；保护 applekey 密钥目录。
-- [ ] 使用 asc-cli 核实 API 认证、Developer ID 证书及必要描述文件。
-- [ ] 实现 PR 编译检查和主分支自动签名、公证、打包与失败清理。
-- [ ] 配置 GitHub Secrets，记录使用方式。
-- [ ] 完成最小充分验证，创建仅含本次变更的本地提交。
+- [x] 使用 asc-cli 核实项目 Key 对应团队、Developer ID 证书和本机匹配私钥；公证 API 可访问，当前权限无需额外描述文件。
+- [x] 实现 PR 编译检查和主分支自动签名、公证、打包与失败清理；`actionlint` 与 shell 语法检查通过。
+- [x] 已加密配置 6 项仓库 Secrets，新增 `docs/github-actions.md` 并更新 README。
+- [x] 静态检查、双架构归档、Developer ID 自动签名导出、主 App / Widget 权限与 Hardened Runtime 检查、临时钥匙串导入和恢复清理均通过。
+- [x] 实际公证提交并获取 Apple 日志，确认 CI 在拒绝时停止打包成功产物。
+- [ ] 受阻：Apple 公证返回 Rejected / 7000，团队未开通公证；需 Apple Developer Program Support 恢复团队服务后重跑。
+- [ ] 未执行：stapler 与 Gatekeeper 接受验收依赖 Apple 公证成功。
+- [x] 创建仅含 CI 工作流、脚本、忽略规则和相关文档的本地提交；已有工程改动保持未暂存。
 - 发布状态：不推送、不创建 Release、不更新 Sparkle Appcast；远端 Actions 执行需工作流推送后验证。

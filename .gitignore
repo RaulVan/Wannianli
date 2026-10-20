@@ -17,3 +17,9 @@ Calendar.xcodeproj/project.xcworkspace/xcuserdata/
 !Calendar.xcodeproj/project.xcworkspace/xcshareddata/
 !Calendar.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
 !Calendar.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+
+# Apple API keys and private signing material
+applekey/
+*.p8
+*.p12
+*.certSigningRequest

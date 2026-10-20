@@ -97,7 +97,7 @@ xcodebuild test \
 
 脚本会构建 Release App、生成保持 framework 符号链接的 ZIP、使用 Sparkle 私钥签名，并更新根目录的 `appcast.xml`。随后提交版本和 Appcast，创建对应的 `v版本号` Git tag，并将 `release/Wannianli-版本号.zip` 上传到同名 GitHub Release。
 
-本项目按当前要求不执行 Apple 公证。若未来转为正式公开分发，建议改用归属明确的 Developer ID Application 证书签名并完成公证。
+GitHub Actions 已配置 Developer ID 签名与 Apple 公证：PR 自动编译，主分支、版本标签和手动运行生成已公证的安装包 Artifact，详见 [CI 配置说明](docs/github-actions.md)。本机 `script/release.sh` 仍是原有 Sparkle 打包流程；现有已发布安装包的签名与公证状态不因此改变。
 
 ## 项目结构
 
@@ -136,4 +136,4 @@ appcast.xml           Sparkle 更新 Feed
 - 产品中文名固定为“万年历”，Swift 模块名为 `Wannianli`。
 - Bundle ID：`local.Calendar.Wannianli`。
 - 当前版本：1.0.2（Build 3）。
-- 当前发布策略：公开 GitHub Release、Sparkle EdDSA 校验、不做 Apple 公证。
+- 当前分发方式：公开 GitHub Release、Sparkle EdDSA 校验；新增 CI 使用 Developer ID 签名与 Apple 公证，仅生成 Artifact，发布操作另行执行。
